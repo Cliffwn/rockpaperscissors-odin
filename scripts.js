@@ -75,7 +75,7 @@ playButton.addEventListener('click', () => {
     scissorsButton.id = 'playerChoiceButton';
 
     document.body.appendChild(rockButton);
-    document.body.appendChild(paperButton);document.body.appendChild(rockButton);
+    document.body.appendChild(paperButton);
     document.body.appendChild(scissorsButton);
 
 });
