@@ -24,27 +24,32 @@ function computerPlay() {
 function game(playerSelection) {
 
     function playRound(computerSelection) {
+        if (document.getElementById('result') !== null) {
+            let element = document.getElementById('result');
+            document.body.removeChild(element);
+        };
         let result = document.createElement('h1');
+        result.id = 'result';
         if (playerSelection === computerSelection) {
             result.innerHTML = "It's a tie!";
             document.body.appendChild(result);
         } else if (playerSelection === 'Rock' && computerSelection === 'Paper') {
-            result.innerHTML = "You lose, ${computerSelection} beats ${playerSelection}";
+            result.innerHTML = "You lose, paper beats rock";
             document.body.appendChild(result);
         } else if (playerSelection === 'Rock' && computerSelection === 'Scissors') {
-            result.innerHTML = "You win, ${playerSelection} beats ${computerSelection}";
+            result.innerHTML = "You win, rock beats scissors";
             document.body.appendChild(result);
         } else if (playerSelection === 'Paper' && computerSelection === 'Rock') {
-            result.innerHTML = "You win, ${playerSelection} beats ${computerSelection}";
+            result.innerHTML = "You win, paper beats rock";
             document.body.appendChild(result);
         } else if (playerSelection === 'Paper' && computerSelection === 'Scissors') {
-            result.innerHTML = "You lose, ${computerSelection} beats ${playerSelection}";
+            result.innerHTML = "You lose, scissors beats paper";
             document.body.appendChild(result);
         } else if (playerSelection === 'Scissors' && computerSelection === 'Rock') {
-            result.innerHTML = "You lose, ${computerSelection} beats ${playerSelection}";
+            result.innerHTML = "You lose, rock beats scissors";
             document.body.appendChild(result);
         } else if (playerSelection === 'Scissors' && computerSelection === 'Paper') {
-            result.innerHTML = "You win, ${playerSelection} beats ${computerSelection}";
+            result.innerHTML = "You win, scissors beats paper";
             document.body.appendChild(result);
         }
     }
@@ -78,6 +83,5 @@ playButton.addEventListener('click', () => {
 document.addEventListener('click',function(e){
     if(e.target && e.target.id== 'playerChoiceButton'){
         game(playerSelection = e.target.innerHTML);
-        console.log(e.target.innerHTML);
     }
 });
