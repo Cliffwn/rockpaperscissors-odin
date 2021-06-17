@@ -2,11 +2,11 @@ function computerPlay() {
     var choice = Math.random() * 3;
 
     if (choice > 0 && choice <= 1) {
-        return 'rock';
+        return 'Rock';
     } else if (choice > 1 && choice <= 2) {
-        return 'paper';
+        return 'Paper';
     } else {
-        return 'scissors';
+        return 'Scissors';
     }
 }
 
@@ -21,29 +21,63 @@ function computerPlay() {
 
 //     return log;
 // }
-function game() {
+function game(playerSelection) {
 
-    function playRound(playerSelection, computerSelection) {
+    function playRound(computerSelection) {
+        let result = document.createElement('h1');
         if (playerSelection === computerSelection) {
-            console.log("It's a tie!");
-        } else if (playerSelection === 'rock' && computerSelection === 'paper') {
-            console.log("You lose, paper beats rock.");
-        } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
-            console.log("You win, rock beats scissors.")
-        } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-            console.log("You win, paper beats rock.")
-        } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
-            console.log("You lose, scissors beats paper.")
-        } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
-            console.log("You lose, rock beats scissors.")
-        } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-            console.log("You win, scissors beats paper.")
+            result.innerHTML = "It's a tie!";
+            document.body.appendChild(result);
+        } else if (playerSelection === 'Rock' && computerSelection === 'Paper') {
+            result.innerHTML = "You lose, ${computerSelection} beats ${playerSelection}";
+            document.body.appendChild(result);
+        } else if (playerSelection === 'Rock' && computerSelection === 'Scissors') {
+            result.innerHTML = "You win, ${playerSelection} beats ${computerSelection}";
+            document.body.appendChild(result);
+        } else if (playerSelection === 'Paper' && computerSelection === 'Rock') {
+            result.innerHTML = "You win, ${playerSelection} beats ${computerSelection}";
+            document.body.appendChild(result);
+        } else if (playerSelection === 'Paper' && computerSelection === 'Scissors') {
+            result.innerHTML = "You lose, ${computerSelection} beats ${playerSelection}";
+            document.body.appendChild(result);
+        } else if (playerSelection === 'Scissors' && computerSelection === 'Rock') {
+            result.innerHTML = "You lose, ${computerSelection} beats ${playerSelection}";
+            document.body.appendChild(result);
+        } else if (playerSelection === 'Scissors' && computerSelection === 'Paper') {
+            result.innerHTML = "You win, ${playerSelection} beats ${computerSelection}";
+            document.body.appendChild(result);
         }
     }
 
-    const playerSelection = prompt("Make your choice: ");
     const computerSelection = computerPlay();
-
-    console.log(playRound(playerSelection, computerSelection))
-
+    playRound(computerSelection);
 }
+
+const playButton = document.createElement("button");
+playButton.innerHTML = 'Play';
+
+document.body.appendChild(playButton);
+
+playButton.addEventListener('click', () => {
+    let rockButton = document.createElement("button");
+    rockButton.innerHTML = 'Rock';
+    rockButton.id = 'playerChoiceButton';
+    let paperButton = document.createElement("button");
+    paperButton.innerHTML = 'Paper';
+    paperButton.id = 'playerChoiceButton';
+    let scissorsButton = document.createElement("button");
+    scissorsButton.innerHTML = 'Scissors';
+    scissorsButton.id = 'playerChoiceButton';
+
+    document.body.appendChild(rockButton);
+    document.body.appendChild(paperButton);document.body.appendChild(rockButton);
+    document.body.appendChild(scissorsButton);
+
+});
+
+document.addEventListener('click',function(e){
+    if(e.target && e.target.id== 'playerChoiceButton'){
+        game(playerSelection = e.target.innerHTML);
+        console.log(e.target.innerHTML);
+    }
+});
